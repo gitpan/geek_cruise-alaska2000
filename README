@@ -1,0 +1,9 @@
+This package contains the slides I presented on the Perl Whirl I Cruise.
+It should eventuelly become a tutorial on how to use CPAN.pm.
+
+The slides were prepared for usage with magicpoint.
+Magicpoint can be found at http://www.Mew.org/mgp/ The PostScript file
+was generated with mgp2ps which comes with the Magicpoint distribution.
+
+Ketchican AK and Berlin, June 2000
+andreas koenig

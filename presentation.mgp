@@ -1,0 +1,335 @@
+%include "default.mgp"
+%tab 1 size 4.5, vgap 80, prefix "  "
+%tab 2 size 3, vgap 100, prefix "  "
+%default 2 bgrad
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+%nodefault
+%left, size 10, font "standard", fore "white", vgap 20
+
+CPAN & CPAN.pm
+
+%size 7
+
+A demonstration
+
+%size 5
+
+Andreas Koenig
+Geek Cruises/Perl Whirl 2000
+June 4, 2000
+
+
+
+
+%page
+%font "standard"
+
+perl -v
+
+%size 2, font "typewriter"
+%filter "perl -v"
+%endfilter
+
+
+
+
+%page
+%font "standard"
+
+perl -V
+
+%size 2, font "typewriter"
+%filter "perl -V"
+%endfilter
+
+
+
+
+%page
+%font "standard", vgap 20
+
+Bleeding Edge Perl
+
+	man perlhack
+	ftp://ftp.linux.activestate.com/pub/staff/gsar/APC/README
+	Patch or rsync your perl
+	./Configure -Dprefix=/usr/local/perl-5.6.0XXX ...
+%fore "red"
+	Build your modules
+%fore "white"
+	PATH=/usr/local/perl/bin
+	ln -s perl-5.6.0XXX /usr/local/perl
+
+
+%page
+%font "standard", vgap 20
+
+Build your modules
+
+	the hard way
+		Download & Extract the source
+		perl Makefile.PL
+		make
+		make test
+		make install
+
+	the easier way
+%fore "red"
+		perl -MCPAN -e shell
+%fore "white"
+
+%page
+%font "standard", size 2, vgap 20
+
+perl -MCPAN -e shell
+
+%font "typewriter", size 2, vgap 20
+/usr/local/perl-5.6.0..6108b/lib/5.6.0/CPAN/Config.pm initialized.
+
+
+CPAN is the world-wide archive of perl resources. It consists of about
+100 sites that all replicate the same contents all around the globe.
+Many countries have at least one CPAN site already. The resources
+found on CPAN are easily accessible with the CPAN.pm module. If you
+want to use CPAN.pm, you have to configure it properly.
+
+If you do not want to enter a dialog now, you can answer 'no' to this
+question and I'll try to autoconfigure. (Note: you can revisit this
+dialog anytime later by typing 'o conf init' at the cpan prompt.)
+
+%cont
+Are you ready for manual configuration? [yes] 
+%cont
+%fore "green"
+n
+%fore "white"
+
+[...]
+
+commit: wrote /usr/local/perl-5.6.0..6108b/lib/5.6.0/CPAN/Config.pm
+
+cpan shell -- CPAN exploration and modules installation (v1.52)
+ReadLine support available (try ``install Bundle::CPAN'')
+
+%fore "red", cont
+cpan> 
+%fore "green", cont
+o conf urllist push ftp://localhost/pub/CPAN
+%fore "red"
+cpan> 
+%fore "green", cont
+o conf commit
+%fore "white"
+commit: wrote /usr/local/perl-5.6.0..6108b/lib/5.6.0/CPAN/Config.pm
+%fore "red"
+cpan> 
+%fore "green", cont
+q
+%fore "white"
+Lockfile removed.
+%fore "red"
+shell# 
+%fore "green", cont
+mkdir ~/.cpan/CPAN
+%fore "red"
+shell# 
+%fore "green", cont
+cp /usr/local/perl-5.6.0..6108b/lib/5.6.0/CPAN/Config.pm ~/.cpan/CPAN/MyConfig.pm
+%fore "red"
+shell# 
+
+%page
+%font "standard", size 2, vgap 20
+
+(again) perl -MCPAN -e shell
+
+%font "typewriter", size 2, vgap 20
+
+cpan shell -- CPAN exploration and modules installation (v1.52)
+ReadLine support available (try ``install Bundle::CPAN'')
+
+%fore "red", cont
+cpan> 
+%fore "green", cont
+install Bundle::CPAN
+
+%fore "white"
+[...]
+
+CPAN: Term::ReadLine::Perl loaded ok
+...................
+19 subroutines in Term::ReadLine redefined
+
+cpan shell -- CPAN exploration and modules installation (v1.52)
+ReadLine support enabled
+
+%fore "red", cont
+cpan> 
+%fore "green", cont
+reload cpan
+%fore "white"
+...................................................................................................................................................................................
+179 subroutines redefined
+
+%fore "red"
+cpan> 
+
+%page
+%font "standard", size 2, vgap 20
+
+Configuration
+
+%font "typewriter", size 2, vgap 20
+
+%fore "red", cont
+cpan> 
+%fore "green", cont
+o conf
+%fore "white"
+CPAN::Config options from /usr/local/perl-5.6.0..6108b/lib/5.6.0/CPAN/Config.pm and /usr/home/root/.cpan/CPAN/MyConfig.pm:
+    commit             Commit changes to disk
+    defaults           Reload defaults from disk
+    init               Interactive setting of all options
+
+[...]
+
+%fore "red"
+cpan> 
+%fore "green", cont
+o conf make_install_arg UNINST=1
+%fore "white"
+    make_install_arg    UNINST=1
+%fore "red"
+cpan> 
+%fore "green", cont
+o conf makepl_arg POLLUTE=1
+%fore "white"
+    makepl_arg    POLLUTE=1
+%fore "red"
+cpan> 
+%fore "green", cont
+o conf prerequisites_policy ask
+%fore "white"
+    prerequisites_policy    ask
+%fore "red"
+cpan> 
+%fore "green", cont
+o conf commit                  
+%fore "white"
+commit: wrote /usr/home/root/.cpan/CPAN/MyConfig.pm
+%fore "red"
+cpan> 
+
+
+%page
+%font "standard", size 2, vgap 20
+
+Getting help
+
+%font "typewriter", size 2, vgap 20
+
+%fore "red", cont
+cpan> 
+%fore "green", cont
+h
+%fore "white"
+Display Information
+ a                                    authors
+ b         string           display   bundles
+ d         or               info      distributions
+ m         /regex/          about     modules
+ i         or                         anything of above
+ r         none             reinstall recommendations
+ u                          uninstalled distributions
+
+Download, Test, Make, Install...
+ get                        download
+ make                       make (implies get)
+ test      modules,         make test (implies make)
+ install   dists, bundles   make install (implies test)
+ clean                      make clean
+ look                       open subshell in these dists' directories
+ readme                     display these dists' README files
+
+Other
+ h,?           display this menu       ! perl-code   eval a perl command
+ o conf [opt]  set and query options   q             quit the cpan shell
+ reload cpan   load CPAN.pm again      reload index  load newer indices
+ autobundle    Snapshot                force cmd     unconditionally do cmd
+%fore "red"
+cpan> 
+
+%page
+%font "standard", size 2, vgap 20
+
+WAIT searchengine
+
+%font "typewriter", size 2, vgap 20
+
+%fore "red"
+cpan> 
+%fore "green", cont
+wh
+%fore "white"
+
+Available commands:
+wq        query           search the WAIT4CPAN server
+wr        hit-number      display search result record
+wd        hit-number      fetch the document and run perldoc on it
+wl        count           limit search to <count> hits
+wh        command         displays help on command if available
+
+%fore "red"
+cpan> 
+%fore "green", cont
+wq tell me where the flowers are
+%fore "white"
+
+Searching for 'tell me where the flowers are'
+query returnes 259 hits, 10 hits follow
+ 1 8.787 Pumpkin - Notes on handling the Perl Patch Pumpkin 
+ 2 7.734 Devel::CallerItem - An object representing a function call from the stack of function calls. 
+ 3 6.648 Getopt::Mixed - getopt processing with both long and short options 
+ 4 6.183 Remedy::Ar - Interface to Remedy's Action Request (Version 1.2) 
+ 5 5.862 Tk::TiedListbox - gang together Listboxes 
+ 6 5.862 Msql::RDBMS - Relational Database Management System for Msql 
+ 7 4.222 CGI - Simple Common Gateway Interface Class 
+ 8 4.222 CGI - Simple Common Gateway Interface Class 
+ 9 4.070 EventServer - the all singing, all dancing server. Handles i/o driven clients, timer driven clients, and interrupt driven clients, all at the same time. Allows user defined events also. If there are any more types of clients, please tell me. 
+10 3.960 Mac::Apps::Anarchie - Interface to Anarchie 2.01+ 
+Type 'wr ' or 'wd ' to examine the results
+
+%fore "red"
+cpan> 
+
+%page
+%font "standard", size 2, vgap 20
+
+Bits of Interest
+
+	The database
+		Try reload index
+		CPAN/authors/01mailrc.txt.gz
+		CPAN/modules/02packages.details.txt.gz
+		CPAN/modules/03modlist.data.gz
+	Bootstrapping your own bundle
+		autobundle
+	Extending the database with private modules
+		CPAN::Site
+
+%page
+%font "standard", vgap 20
+
+Future directions
+
+	Security
+		Signed files
+	Searching
+		Better Integration with WAIT
+		search.cpan.org
+	Individual Module Configuration
+		Enable Storing of Options
+	PPM (Perl Package Manager by ActiveState)
+		Better Integration
+
